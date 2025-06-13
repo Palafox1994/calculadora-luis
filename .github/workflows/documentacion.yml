@@ -38,6 +38,6 @@ jobs:
         with:
           name: docs
           path: pdfs
-      - uses: luisfer94/helloWordlAction@v1
+      - uses: Palafox1994/helloWordlAction@v1
         with: 
           who-to-greet: 'Luis Fernando'
