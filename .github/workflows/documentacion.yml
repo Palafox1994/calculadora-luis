@@ -27,13 +27,17 @@ jobs:
         node_version: ['18.x', '20.x']
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v3
+      - uses: baileyjm02/markdown-to-pdf@v1
         with:
-          node-version: ${{ matrix.node_version }}
-
-      - name: npm install, build and test
-        run: |
-          npm install
-          npm run build --if-present
+          input_dir: docs
+          output_dir: pdfs
+          images_dir: docs/images
+          # for example <img src="./images/file-name.png">
+          image_import: ./images
+          # Default is true, can set to false to only get PDF files
+          build_html: false
+      - uses: actions/upload-artifact@v3
+        with:
+          name: docs
+          path: pdfs
